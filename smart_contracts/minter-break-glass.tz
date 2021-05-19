@@ -1,0 +1,89 @@
+parameter (or (pair %breakGlass (address %governorContract) (pair (address %tokenContract) (pair (address %ovenProxyContract) (pair (address %stabilityFundContract) (address %developerFundContract))))) (lambda %runLambda unit (list operation)));
+storage   (pair (address %daoAddress) (pair (address %multisigAddress) (address %targetAddress)));
+code
+  {
+    UNPAIR;     # @parameter : @storage
+    IF_LEFT
+      {
+        SWAP;       # @storage : @parameter%breakGlass
+        # == breakGlass ==
+        # sp.verify(sp.sender == self.data.multisigAddress, message = 'NOT_MSIG') # @storage : @parameter%breakGlass
+        DUP;        # @storage : @storage : @parameter%breakGlass
+        DUG 2;      # @storage : @parameter%breakGlass : @storage
+        GET 3;      # address : @parameter%breakGlass : @storage
+        SENDER;     # address : address : @parameter%breakGlass : @storage
+        COMPARE;    # int : @parameter%breakGlass : @storage
+        EQ;         # bool : @parameter%breakGlass : @storage
+        IF
+          {}
+          {
+            PUSH string "NOT_MSIG"; # string : @parameter%breakGlass : @storage
+            FAILWITH;   # FAILED
+          }; # @parameter%breakGlass : @storage
+        # sp.transfer((params.governorContract, (params.tokenContract, (params.ovenProxyContract, (params.stabilityFundContract, params.developerFundContract)))), sp.tez(0), sp.contract(sp.TPair(sp.TAddress, sp.TPair(sp.TAddress, sp.TPair(sp.TAddress, sp.TPair(sp.TAddress, sp.TAddress)))), self.data.targetAddress, entry_point='updateContracts').open_some()) # @parameter%breakGlass : @storage
+        NIL operation; # list operation : @parameter%breakGlass : @storage
+        DUP 3;      # @storage : list operation : @parameter%breakGlass : @storage
+        GET 4;      # address : list operation : @parameter%breakGlass : @storage
+        CONTRACT %updateContracts (pair address (pair address (pair address (pair address address)))); # option (contract (pair address (pair address (pair address (pair address address))))) : list operation : @parameter%breakGlass : @storage
+        IF_SOME
+          {}
+          {
+            PUSH int 46; # int : list operation : @parameter%breakGlass : @storage
+            FAILWITH;   # FAILED
+          }; # @some : list operation : @parameter%breakGlass : @storage
+        PUSH mutez 0; # mutez : @some : list operation : @parameter%breakGlass : @storage
+        DIG 3;      # @parameter%breakGlass : mutez : @some : list operation : @storage
+        DUP;        # @parameter%breakGlass : @parameter%breakGlass : mutez : @some : list operation : @storage
+        GET 8;      # address : @parameter%breakGlass : mutez : @some : list operation : @storage
+        SWAP;       # @parameter%breakGlass : address : mutez : @some : list operation : @storage
+        DUP;        # @parameter%breakGlass : @parameter%breakGlass : address : mutez : @some : list operation : @storage
+        DUG 5;      # @parameter%breakGlass : address : mutez : @some : list operation : @parameter%breakGlass : @storage
+        GET 7;      # address : address : mutez : @some : list operation : @parameter%breakGlass : @storage
+        PAIR;       # pair address address : mutez : @some : list operation : @parameter%breakGlass : @storage
+        DUP 5;      # @parameter%breakGlass : pair address address : mutez : @some : list operation : @parameter%breakGlass : @storage
+        GET 5;      # address : pair address address : mutez : @some : list operation : @parameter%breakGlass : @storage
+        PAIR;       # pair address (pair address address) : mutez : @some : list operation : @parameter%breakGlass : @storage
+        DUP 5;      # @parameter%breakGlass : pair address (pair address address) : mutez : @some : list operation : @parameter%breakGlass : @storage
+        GET 3;      # address : pair address (pair address address) : mutez : @some : list operation : @parameter%breakGlass : @storage
+        PAIR;       # pair address (pair address (pair address address)) : mutez : @some : list operation : @parameter%breakGlass : @storage
+        DIG 4;      # @parameter%breakGlass : pair address (pair address (pair address address)) : mutez : @some : list operation : @storage
+        CAR;        # address : pair address (pair address (pair address address)) : mutez : @some : list operation : @storage
+        PAIR;       # pair address (pair address (pair address (pair address address))) : mutez : @some : list operation : @storage
+        TRANSFER_TOKENS; # operation : list operation : @storage
+        CONS;       # list operation : @storage
+      }
+      {
+        SWAP;       # @storage : @parameter%runLambda
+        # == runLambda ==
+        # sp.verify(sp.sender == self.data.daoAddress, message = 'NOT_DAO') # @storage : @parameter%runLambda
+        DUP;        # @storage : @storage : @parameter%runLambda
+        DUG 2;      # @storage : @parameter%runLambda : @storage
+        CAR;        # address : @parameter%runLambda : @storage
+        SENDER;     # address : address : @parameter%runLambda : @storage
+        COMPARE;    # int : @parameter%runLambda : @storage
+        EQ;         # bool : @parameter%runLambda : @storage
+        IF
+          {}
+          {
+            PUSH string "NOT_DAO"; # string : @parameter%runLambda : @storage
+            FAILWITH;   # FAILED
+          }; # @parameter%runLambda : @storage
+        # for op in params(sp.unit): ... # @parameter%runLambda : @storage
+        NIL operation; # list operation : @parameter%runLambda : @storage
+        SWAP;       # @parameter%runLambda : list operation : @storage
+        UNIT;       # unit : @parameter%runLambda : list operation : @storage
+        EXEC;       # list operation : list operation : @storage
+        ITER
+          {
+            # sp.operations().push(op) # operation : list operation : @storage
+            CONS;       # list operation : @storage
+          }; # list operation : @storage
+      }; # list operation : @storage
+    NIL operation; # list operation : list operation : @storage
+    SWAP;       # list operation : list operation : @storage
+    ITER
+      {
+        CONS;       # list operation : @storage
+      }; # list operation : @storage
+    PAIR;       # pair (list operation) @storage
+  };
