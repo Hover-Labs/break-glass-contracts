@@ -5,26 +5,26 @@ import { KeyStore, TezosNodeReader } from 'conseiljs'
 const CONTRACTS = {
   TEST: {
     // Kolibri Contracts
-    DEVELOPER_FUND: 'KT1UdVpxcdTF9RNF9qC6DGu3XF56vc3ciabk',
-    MINTER: 'KT1FrAHTBboRCPh2osRP4ThNdEQRzgkqAd79',
-    ORACLE: 'KT1X3Grb3j6xVD2yejdbHnVTWRE4NA2tyszM',
-    OVEN_FACTORY: 'KT1VTHtbpktrybvERKN8jbAcMUXXZRfvZ5Sd',
-    OVEN_PROXY: 'KT194yN9aZeUuC1YMhyCA2KcXNiSbRQL7Pqr',
-    OVEN_REGISTRY: 'KT19NJHDViPacRfJkWjgK3pWPG4xiyamQ6Ht',
-    STABILITY_FUND: 'KT1AcdJjeG96zGTVfAKswKzrJBdTRwV9Ca5Y',
-    TOKEN: 'KT1WchDzW7rzdAf2TBfQfTgvabLKSn2XJtkb',
+    DEVELOPER_FUND: 'KT1GaoN7QJf6BTBdAbBU4Sn2HkKBURYiKdWw',
+    MINTER: 'KT1XRZcTtAMSona8scisWHMqjS1mPY9MYgAs',
+    ORACLE: 'KT1Sf2MED2gU2tweMYaq7W9eoUgWZ5Fbxpdm',
+    OVEN_FACTORY: 'KT1DzoRyZi5EH4RRutBLiFbfQiXVzUZPp2mz',
+    OVEN_PROXY: 'KT1SaLAE26yfEZNWDeMguHGynULz4MbXoo7i',
+    OVEN_REGISTRY: 'KT1NCBuKhGcBbQUPegZV87NweGN6EyYotGUR',
+    STABILITY_FUND: 'KT1EED1wfZcYS796kCm5qUDf3fngxSF67gRR',
+    TOKEN: 'KT1TYGatFGXccm23ctedPScmkJZQjUN8n4iK',
 
     // Liquidity Pool
-    LIQUIDITY_POOL: 'KT1VLkQDbKg6sfz1M5p33grRFUbC3B76tUtt',
+    LIQUIDITY_POOL: 'KT1JRapghAvX1V8AC1gGmBZz9xMBQtG1rvFT',
 
     // Murmuration Contracts
-    COMMUNITY_FUND: 'KT1KrUuPe5RMZjHWg4tow8Un6ppsW4gHgGuC',
-    VESTING_VAULTS: ['KT1S56jqhZePm4GCRcvv1hBwTGFbLK8EPJAj', 'KT19ouGreMy6Gfo1beq77RP8d1nh31RxdBGM', 'KT1VdJuWV1jsYKTyKsvr2GifmYmQphwAFJvG'],
+    COMMUNITY_FUND: 'KT1AJHX385bqnJCVpz7YLUicuMhnXPkU3Gpz',
+    VESTING_VAULTS: ['KT1VY3EbRDrPu1Z1UWhKxiUJK7BkFik8ieXF', 'KT1KpmCkRX1tEeeVhPH6EhMW6bsBroW9Ru6e', 'KT1VdJuWV1jsYKTyKsvr2GifmYmQphwAFJvG'],
   }
 }
 
 const daoAddress = 'KT1WebnFBXa33G3AoA5zC7eMyJjmuFJqCCCb'
-
+const multisigAddress = ''
 
 // Load secret key
 const privateKeyName = 'BREAK_GLASS_SK'
@@ -120,7 +120,6 @@ const deploy = async (): Promise<void> => {
   console.log('------------------------------------------------------')
   console.log('')
 
-  const multisigAddress = keystore.publicKeyHash
 
   console.log('>>> [1/11] Deploying Break Glass for Developer Fund')
   counter++
