@@ -157,7 +157,7 @@ const deploy = async (): Promise<void> => {
   const tokenDeployResult = await deployBreakGlass(CONTRACTS.TEST.TOKEN, daoAddress, multisigAddress, breakGlassContract, keystore, counter, nodeUrl)
   console.log('')
 
-  console.log('>>> [8/11] Deploying Break Glass for Liquidity POol')
+  console.log('>>> [8/11] Deploying Break Glass for Liquidity Pool')
   counter++
   const liquidityPoolResult = await deployBreakGlass(CONTRACTS.TEST.LIQUIDITY_POOL, daoAddress, multisigAddress, liquidityPoolBreakGlassContract, keystore, counter, nodeUrl)
   console.log('')
@@ -192,146 +192,162 @@ const deploy = async (): Promise<void> => {
 
   console.log('------------------------------------------------------')
   console.log('>> Deploy Complete!')
-  console.log('>> Wiring break glasses as governors...')
-  console.log('------------------------------------------------------')
-  console.log('')
+  // console.log('>> Wiring break glasses as governors...')
+  // console.log('------------------------------------------------------')
+  // console.log('')
 
-  console.log('>>> [1/11] Setting Governor for Developer Fund')
-  counter++
-  await sendOperation(CONTRACTS.TEST.DEVELOPER_FUND, 'setGovernorContract', `"${developerFundDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [1/11] Setting Governor for Developer Fund')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.DEVELOPER_FUND, 'setGovernorContract', `"${developerFundDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [2/11] Setting Governor for Oracle')
-  counter++
-  await sendOperation(CONTRACTS.TEST.ORACLE, 'setGovernorContract', `"${oracleDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [2/11] Setting Governor for Oracle')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.ORACLE, 'setGovernorContract', `"${oracleDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [3/11] Setting Governor for Oven Factory')
-  counter++
-  await sendOperation(CONTRACTS.TEST.OVEN_FACTORY, 'setGovernorContract', `"${ovenFactoryDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [3/11] Setting Governor for Oven Factory')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.OVEN_FACTORY, 'setGovernorContract', `"${ovenFactoryDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [4/11] Setting Governor for Oven Proxy')
-  counter++
-  await sendOperation(CONTRACTS.TEST.OVEN_PROXY, 'setGovernorContract', `"${ovenProxyDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [4/11] Setting Governor for Oven Proxy')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.OVEN_PROXY, 'setGovernorContract', `"${ovenProxyDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [5/11] Setting Governor for Oven Registry')
-  counter++
-  await sendOperation(CONTRACTS.TEST.OVEN_REGISTRY, 'setGovernorContract', `"${ovenRegistryDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [5/11] Setting Governor for Oven Registry')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.OVEN_REGISTRY, 'setGovernorContract', `"${ovenRegistryDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [6/11] Setting Governor for Stability Fund')
-  counter++
-  await sendOperation(CONTRACTS.TEST.STABILITY_FUND, 'setGovernorContract', `"${stabilityFundDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [6/11] Setting Governor for Stability Fund')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.STABILITY_FUND, 'setGovernorContract', `"${stabilityFundDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [7/11] Setting Governor for Token')
-  counter++
-  await sendOperation(CONTRACTS.TEST.TOKEN, 'setGovernorContract', `"${tokenDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [7/11] Setting Governor for Token')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.TOKEN, 'setGovernorContract', `"${tokenDeployResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [8/11] Setting Governor for Liquidity Pool')
-  counter++
-  await sendOperation(CONTRACTS.TEST.LIQUIDITY_POOL, 'updateGovernorAddress', `"${liquidityPoolResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [8/11] Setting Governor for Liquidity Pool')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.LIQUIDITY_POOL, 'updateGovernorAddress', `"${liquidityPoolResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [9/11] Setting Governor for Community Fund')
-  counter++
-  await sendOperation(CONTRACTS.TEST.COMMUNITY_FUND, 'setGovernorContract', `"${communityFundResult.contractAddress}"`, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [9/11] Setting Governor for Community Fund')
+  // counter++
+  // await sendOperation(CONTRACTS.TEST.COMMUNITY_FUND, 'setGovernorContract', `"${communityFundResult.contractAddress}"`, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('>>> [10/11] Setting Governor for Vesting Contracts')
-  for (var i = 0; i < CONTRACTS.TEST.VESTING_VAULTS.length; i++) {
-    const vestingContract = CONTRACTS.TEST.VESTING_VAULTS[i]
-    const vestingResult = vestingResults[i]
+  // console.log('>>> [10/11] Setting Governor for Vesting Contracts')
+  // for (var i = 0; i < CONTRACTS.TEST.VESTING_VAULTS.length; i++) {
+  //   const vestingContract = CONTRACTS.TEST.VESTING_VAULTS[i]
+  //   const vestingResult = vestingResults[i]
 
-    counter++
-    await sendOperation(vestingContract, 'setGovernorContract', `"${vestingResult}"`, keystore, counter, nodeUrl)
-  }
-  console.log('')
+  //   counter++
+  //   await sendOperation(vestingContract, 'setGovernorContract', `"${vestingResult}"`, keystore, counter, nodeUrl)
+  // }
+  // console.log('')
 
-  console.log('>>> [11/11] Setting Governor for Minter')
-  counter++
-  const minterParamStorage = `Pair "${minterBreakGlassDeployResult.contractAddress}" ("${CONTRACTS.TEST.TOKEN}" ("${CONTRACTS.TEST.OVEN_PROXY}" ("${CONTRACTS.TEST.STABILITY_FUND}" "${CONTRACTS.TEST.DEVELOPER_FUND}")))`
-  await sendOperation(CONTRACTS.TEST.MINTER, 'updateContracts', minterParamStorage, keystore, counter, nodeUrl)
-  console.log('')
+  // console.log('>>> [11/11] Setting Governor for Minter')
+  // counter++
+  // const minterParamStorage = `Pair "${minterBreakGlassDeployResult.contractAddress}" ("${CONTRACTS.TEST.TOKEN}" ("${CONTRACTS.TEST.OVEN_PROXY}" ("${CONTRACTS.TEST.STABILITY_FUND}" "${CONTRACTS.TEST.DEVELOPER_FUND}")))`
+  // await sendOperation(CONTRACTS.TEST.MINTER, 'updateContracts', minterParamStorage, keystore, counter, nodeUrl)
+  // console.log('')
 
-  console.log('------------------------------------------------------')
-  console.log('>> Wiring Complete!')
-  console.log('>> Breaking Glass...')
-  console.log('------------------------------------------------------')
-  console.log('')
+  // console.log('------------------------------------------------------')
+  // console.log('>> Wiring Complete!')
+  // console.log('>> Breaking Glass...')
+  // console.log('------------------------------------------------------')
+  // console.log('')
 
-  const interestingHashes: Array<string> = []
+  // const interestingHashes: Array<string> = []
 
-  console.log('>>> [1/11] Breaking Glass for Developer Fund')
-  counter++
-  interestingHashes.push(await sendOperation(developerFundDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [1/11] Breaking Glass for Developer Fund')
+  // counter++
+  // interestingHashes.push(await sendOperation(developerFundDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [2/11] Breaking Glass for Oracle')
-  counter++
-  interestingHashes.push(await sendOperation(oracleDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [2/11] Breaking Glass for Oracle')
+  // counter++
+  // interestingHashes.push(await sendOperation(oracleDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [3/11] Breaking Glass for Oven Factory')
-  counter++
-  interestingHashes.push(await sendOperation(ovenFactoryDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [3/11] Breaking Glass for Oven Factory')
+  // counter++
+  // interestingHashes.push(await sendOperation(ovenFactoryDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [4/11] Breaking Glass for Oven Proxy')
-  counter++
-  interestingHashes.push(await sendOperation(ovenProxyDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [4/11] Breaking Glass for Oven Proxy')
+  // counter++
+  // interestingHashes.push(await sendOperation(ovenProxyDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [5/11] Breaking Glass for Oven Registry')
-  counter++
-  interestingHashes.push(await sendOperation(ovenRegistryDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [5/11] Breaking Glass for Oven Registry')
+  // counter++
+  // interestingHashes.push(await sendOperation(ovenRegistryDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [6/11] Breaking Glass for Stability Fund')
-  counter++
-  interestingHashes.push(await sendOperation(stabilityFundDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [6/11] Breaking Glass for Stability Fund')
+  // counter++
+  // interestingHashes.push(await sendOperation(stabilityFundDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [7/11] Breaking Glass for Token')
-  counter++
-  interestingHashes.push(await sendOperation(tokenDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [7/11] Breaking Glass for Token')
+  // counter++
+  // interestingHashes.push(await sendOperation(tokenDeployResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [8/11] Breaking Glass for Liquidity Pool')
-  counter++
-  interestingHashes.push(await sendOperation(liquidityPoolResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [8/11] Breaking Glass for Liquidity Pool')
+  // counter++
+  // interestingHashes.push(await sendOperation(liquidityPoolResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [9/11] Breaking Glass for Community Fund')
-  counter++
-  interestingHashes.push(await sendOperation(communityFundResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [9/11] Breaking Glass for Community Fund')
+  // counter++
+  // interestingHashes.push(await sendOperation(communityFundResult.contractAddress, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // console.log('')
 
-  console.log('>>> [10/11] Breaking Glass for Vesting Contracts')
-  for (var i = 0; i < CONTRACTS.TEST.VESTING_VAULTS.length; i++) {
-    const vestingBreakGlass = vestingResults[i]
+  // console.log('>>> [10/11] Breaking Glass for Vesting Contracts')
+  // for (var i = 0; i < CONTRACTS.TEST.VESTING_VAULTS.length; i++) {
+  //   const vestingBreakGlass = vestingResults[i]
 
-    counter++
-    interestingHashes.push(await sendOperation(vestingBreakGlass, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
-  }
-  console.log('')
+  //   counter++
+  //   interestingHashes.push(await sendOperation(vestingBreakGlass, 'breakGlass', `"${multisigAddress}"`, keystore, counter, nodeUrl))
+  // }
+  // console.log('')
 
-  console.log('>>> [11/11] Breaking Glass for Minter')
-  counter++
-  const minterBreakGlassParam = `Pair "${multisigAddress}" (Pair "${CONTRACTS.TEST.TOKEN}" (Pair "${CONTRACTS.TEST.OVEN_PROXY}" (Pair "${CONTRACTS.TEST.STABILITY_FUND}" "${CONTRACTS.TEST.DEVELOPER_FUND}")))`
-  interestingHashes.push(await sendOperation(minterBreakGlassDeployResult.contractAddress, "breakGlass", minterBreakGlassParam, keystore, counter, nodeUrl))
-  console.log('')
+  // console.log('>>> [11/11] Breaking Glass for Minter')
+  // counter++
+  // const minterBreakGlassParam = `Pair "${multisigAddress}" (Pair "${CONTRACTS.TEST.TOKEN}" (Pair "${CONTRACTS.TEST.OVEN_PROXY}" (Pair "${CONTRACTS.TEST.STABILITY_FUND}" "${CONTRACTS.TEST.DEVELOPER_FUND}")))`
+  // interestingHashes.push(await sendOperation(minterBreakGlassDeployResult.contractAddress, "breakGlass", minterBreakGlassParam, keystore, counter, nodeUrl))
+  // console.log('')
 
   console.log('------------------------------------------------------')
   console.log('> Success!')
   console.log('------------------------------------------------------')
   console.log('')
 
-  console.log('> Break Glass Hashes')
-  console.log(JSON.stringify(interestingHashes))
+  console.log(`Developer Fund: ${developerFundDeployResult.contractAddress}`)
+  console.log(`Minter: ${minterBreakGlassDeployResult.contractAddress}`)
+  console.log(`Oracle: ${oracleDeployResult.contractAddress}`)
+  console.log(`Oven Factor: ${ovenFactoryDeployResult.contractAddress}`)
+  console.log(`Oven Proxy: ${ovenProxyDeployResult.contractAddress}`)
+  console.log(`Oven Registry: ${ovenRegistryDeployResult.contractAddress}`)
+  console.log(`Stability Fund: ${stabilityFundDeployResult.contractAddress}`)
+  console.log(`Token: ${tokenDeployResult.contractAddress}`)
+
+  console.log(`Liquidity Pool: ${liquidityPoolResult.contractAddress}`)
+
+  console.log(`Comm Fund: ${communityFundResult.contractAddress}`)
+  console.log(`Vault 1: ${vestingResults[0]}`)
+  console.log(`Vault 2: ${vestingResults[0]}`)
+  console.log(`Vault 3: ${vestingResults[0]}`)
+
+  // console.log('> Break Glass Hashes')
+  // console.log(JSON.stringify(interestingHashes))
   console.log('')
 }
 
